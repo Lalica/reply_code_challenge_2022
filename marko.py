@@ -3,7 +3,6 @@ from collections import defaultdict
 from scoring import score
 
 
-
 # Calling example
 # print(main(2, 2, 6, "./05-androids-armageddon.txt"))
 
@@ -11,19 +10,19 @@ from scoring import score
 # path = "./05-androids-armageddon.txt"
 
 
-def main(f1, f2, f3, path):
+def main(solution, problem):
+    f1, f2, f3 = solution
+
     def heuristic(demon):
         return f1*demon.recover_stamina/(demon.recover_turns+1) + f2*sum(demon.fragments)/(1+len(demon.fragments)) - f3*demon.consume_stamina
 
-
-    stamina, max_stamina, turns, demons = parse(path[2:])
+    stamina, max_stamina, turns, demons = problem
 
     detup = []
     for i in range(len(demons)):
         detup.append((demons[i], i))
     scores = [(heuristic(demon[0]), demon) for demon in detup]
     scores.sort()
-
 
     seen = set()
     killed = []
@@ -42,4 +41,4 @@ def main(f1, f2, f3, path):
         else:
             turn -= 1
 
-    return score(killed, parse(path))
+    return score(killed, problem)
