@@ -10,22 +10,19 @@ best, best_sol = 0, []
 def fitness_func(solution, solution_idx):
     global best, best_sol
 
-    scr = score(solution, problem)
-
-    if scr > best:
-        best = scr
-        best_sol = solution
-
-        print(best)
-        output(best_sol)
-
-    return scr
+    return score(solution, problem)
 
 
 def on_generation(ga):
-    pass
-    # print("Generation", ga.generations_completed)
-    # print(ga.population)
+    global best, best_sol
+    ga_best_sol, ga_best, _ = ga.best_solution()
+
+    if ga_best > best:
+        best = ga_best
+        best_sol = ga_best_sol
+
+        print(best)
+        output(best_sol)
 
 
 filename = sys.argv[1]
