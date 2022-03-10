@@ -21,10 +21,10 @@ def parse(path: str) -> tuple[int, int, int, Demon]:
                 *fragments,
             ) = line.strip().split()
             demons.append(
-                Demon(consume_stamina, recover_turns, recover_stamina, fragments)
+                Demon(int(consume_stamina), int(recover_turns), int(recover_stamina), list(map(int, fragments)))
             )
 
-    return start_stamina, max_stamina, turns, demons
+    return int(start_stamina), int(max_stamina), int(turns), demons
 
 
 def output(arr: list) -> None:
