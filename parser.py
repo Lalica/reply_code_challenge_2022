@@ -21,7 +21,12 @@ def parse(path: str) -> tuple[int, int, int, Demon]:
                 *fragments,
             ) = line.strip().split()
             demons.append(
-                Demon(int(consume_stamina), int(recover_turns), int(recover_stamina), list(map(int, fragments)))
+                Demon(
+                    int(consume_stamina),
+                    int(recover_turns),
+                    int(recover_stamina),
+                    list(map(int, fragments)),
+                )
             )
 
     return int(start_stamina), int(max_stamina), int(turns), demons
@@ -29,6 +34,9 @@ def parse(path: str) -> tuple[int, int, int, Demon]:
 
 def output(arr: list) -> None:
     global task
-    with open(f"sol{task}-" + datetime.now().strftime("%H-%M-%S") + ".txt", "w") as f:
+    filename = f"sol{task}-" + datetime.now().strftime("%H-%M-%S") + ".txt"
+    with open(filename, "w") as f:
         for i in arr:
             print(i, file=f)
+
+    return filename
