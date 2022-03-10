@@ -6,11 +6,9 @@ def pick_index(demons, tleft):
     scores = list()
     for demon in demons:
         scores.append(demon.recover_stamina/(demon.recover_turns+1) + sum(demon.fragments[:tleft])/(1+len(demon.fragments[:tleft]))-demon.consume_stamina)
-    best_score = max(scores)
-    ind = scores.index(best_score)
-    return ind
+    return scores.index(max(scores))
 
-stamina, max_stamina, turns, demons = parse("./01-the-cloud-abyss.txt")
+stamina, max_stamina, turns, demons = parse("01-the-cloud-abyss.txt")
 
 seen = set()
 killed = []
@@ -26,4 +24,4 @@ for turn in range(turns):
         gain_stamina[turn + demon.recover_turns] += demon.recover_stamina
     demons.remove(demon)
 
-output(killed)
+print(killed)
