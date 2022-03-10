@@ -2,8 +2,12 @@ from parser import parse, output
 from collections import defaultdict
 import random
 
+f1 = 2
+f2 = 2
+f3 = 5
 def heuristic(demon):
-    return (demon.recover_stamina/(demon.recover_turns+1) + sum(demon.fragments)/(1+len(demon.fragments))-demon.consume_stamina)
+    return f1*demon.recover_stamina/(demon.recover_turns+1) + f2*sum(demon.fragments)/(1+len(demon.fragments)) - f3*demon.consume_stamina
+path = "./05-androids-armageddon.txt"
 
 stamina, max_stamina, turns, demons = parse("05-androids-armageddon.txt")
 
@@ -30,4 +34,5 @@ for turn in range(turns):
         gain_stamina[turn + demon.recover_turns] += demon.recover_stamina
     else:
         turn -= 1
-output(killed)
+import scoring
+print(scoring.score(killed, parse(path)))
