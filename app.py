@@ -1,3 +1,4 @@
-from parser import parse
+from parser import parse, output
 
-print(parse("./00-example.txt"))
+start_stamina, max_stamina, turns, demons = parse("./00-example.txt")
+output([1, 3, 2, 4, 0])
