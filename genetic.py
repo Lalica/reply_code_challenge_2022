@@ -22,10 +22,11 @@ def on_generation(ga):
         best_sol = ga_best_sol
 
         print(best)
-        output(best_sol)
+        output(best_sol, sol_filename)
 
 
 filename = sys.argv[1]
+sol_filename = "sol" + filename[:2] + "-genetski.txt"
 problem = parse(filename)
 N = len(problem[3])
 ga_instance = pygad.GA(num_generations=50000,

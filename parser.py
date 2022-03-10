@@ -32,9 +32,10 @@ def parse(path: str) -> tuple[int, int, int, Demon]:
     return int(start_stamina), int(max_stamina), int(turns), demons
 
 
-def output(arr: list) -> None:
+def output(arr: list, filename=None) -> None:
     global task
-    filename = f"sol{task}-" + datetime.now().strftime("%H-%M-%S") + ".txt"
+    if not filename:
+        filename = f"sol{task}-" + datetime.now().strftime("%H-%M-%S") + ".txt"
     with open(filename, "w") as f:
         for i in arr:
             print(i, file=f)
