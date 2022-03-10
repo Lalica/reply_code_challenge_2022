@@ -30,10 +30,9 @@ def score(solution, problem):
             i_d, dt = processing_demons[i]
             demon = demons[i_d]
 
-            if dt >= len(demon.fragments):
-                continue
+            if dt < len(demon.fragments):
+                points += demon.fragments[dt]
 
-            points += demon.fragments[dt]
             processing_demons[i][1] += 1
 
     return points

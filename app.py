@@ -1,13 +1,11 @@
 from parser import parse, output
 from scoring import score
-import random
 
-start_stamina, max_stamina, turns, demons = parse("./00-example.txt")
-output([1, 3, 2, 4, 0])
 
-problem = parse("./00-example.txt")
+def test(problem_filename, solution_filename):
+    problem = parse(problem_filename)
 
-# solution = list(range(len(problem[3])))
-# # random.shuffle(solution)
-# solution = [1, 3, 2, 4, 0]
-# print(score(solution, problem))
+    with open(solution_filename) as f:
+        solution = list(map(int, f.read().strip().split()))
+
+    print(score(solution, problem))
