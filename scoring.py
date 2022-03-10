@@ -5,9 +5,6 @@ Demon = namedtuple("demon", "consume_stamina recover_turns recover_stamina fragm
 
 
 def score(solution, problem):
-    print(solution)
-    print(problem)
-
     stamina, max_stamina, turns, demons = problem
 
     processing_demons = []

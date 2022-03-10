@@ -1,8 +1,15 @@
 from parser import parse, output
+from scoring import score
 from collections import defaultdict
 import random
 
-stamina, max_stamina, turns, demons = parse("./01-the-cloud-abyss.txt")
+# path = "./00-example.txt"
+# path = "./01-the-cloud-abyss.txt"
+# path = "./02-iot-island-of-terror.txt"
+# path = "./03-etheryum.txt"
+# path = "./04-the-desert-of-autonomous-machines.txt"
+path = "./05-androids-armageddon.txt"
+stamina, max_stamina, turns, demons = parse(path)
 
 seen = set()
 killed = []
@@ -18,3 +25,4 @@ for turn in range(turns):
         gain_stamina[turn + demon.recover_turns] += demon.recover_stamina
 
 output(killed)
+print(score(killed, parse(path)))
